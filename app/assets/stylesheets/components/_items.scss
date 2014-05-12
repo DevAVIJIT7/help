@@ -1,4 +1,4 @@
-@mixin item-color($label, $background, $border) {
+@mixin item-color($label, $background, $border, $secondary_label) {
   border: 2px solid $border;
   background: $background;
   color: $label;
@@ -9,10 +9,13 @@
     background: $label;
     color: $background;
   }
+  .item__description {
+    color: $secondary_label;
+  }
 }
 
 .item {
-  @include item-color(color('active'), color('white'), color('border'));
+  @include item-color(color('active'), color('white'), color('border'), color('base'));
   @extend .bold;
   @include font-size(fs(5));
   margin-bottom: 27px;
@@ -31,15 +34,14 @@
     border-radius: 4px;
     display: inline-block;
   }
+  &__description {
+    @extend .pull-left;
+    @include font-size(fs(8));
+    display: block;
+    clear: both;
+  }
   &:hover, &.active {
-    @include item-color(color('white'), color('base'), color('base'));
+    @include item-color(color('white'), color('base'), color('base'), color('border'));
   }
   @include clearfix();
-}
-
-.item__description {
-  color: black;
-  font-size: 12px;
-  display: block;
-  clear: both;
 }
