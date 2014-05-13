@@ -1,0 +1,15 @@
+%td.request__done
+  - if support.done?
+    .image
+      = image_tag('i/status-done.png')
+  - else
+    .image
+      = image_tag('i/status-new.png')
+%td.request__topic
+  = support.topic
+%td.request__body
+  = support.body
+%td.request__user
+  = support.user
+%td.request__receiver
+  = support.receiver
