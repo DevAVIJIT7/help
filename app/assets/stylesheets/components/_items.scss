@@ -5,7 +5,7 @@
   .item__label {
     color: $label;
   }
-  .item__count {
+  .item__count span {
     background: $label;
     color: $background;
   }
@@ -15,24 +15,31 @@
 }
 
 .item {
+  $side-padding: 20px;
   @include item-color(color('active'), color('white'), color('border'), color('base'));
   @extend .bold;
   @include font-size(fs(5));
   margin-bottom: 27px;
-  padding: 23px 20px;
+  padding: 23px $side-padding;
   width: 100%;
   border-radius: 4px;
   display: block;
+  position: relative;
   &__label {
     @extend .pull-left;
   }
   &__count {
-    @extend .pull-right;
-    @extend .bold;
-    @include font-size(fs(7));
-    padding: 1px 7px;
-    border-radius: 4px;
-    display: inline-block;
+    height: 100%;
+    right: $side-padding;
+    top: 0;
+    position: absolute;
+    span {
+      @extend .bold;
+      @extend %centered-verticaly;
+      @include font-size(fs(7));
+      padding: 1px 7px;
+      border-radius: 4px;
+    }
   }
   &__description {
     @extend .pull-left;
