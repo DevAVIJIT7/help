@@ -3,6 +3,10 @@ class SupportsController < ApplicationController
   expose_decorated(:topic) { Topic.find(params[:topic_id]) }
   expose_decorated(:support) { Support.find(params[:id]) }
   expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
+  expose_decorated(:supports) { Support.all }
+
+  def index
+  end
 
   def create
     need_support = AskForSupport.new(current_user.object, topic, support_params)
