@@ -1,0 +1,25 @@
+.request {
+  width: 100%;
+  &__list {
+    height: 50px;
+  }
+  &__done {
+    width: 10%;
+  }
+  &__topic {
+    width: 10%;
+  }
+  &__body {
+    width: 60%;
+  }
+  &__user {
+    width: 10%;
+  }
+  &__receiver {
+    width: 10%;
+  }
+  &__header {
+    @include font-size(fs(5));
+    @include font-family($base_font_family, $bold_font);
+  }
+}
