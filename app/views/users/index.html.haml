@@ -5,6 +5,17 @@
         %h2
           Best supporters!
     .row
+      %h3
+        This week:
+    .row
+      .col-lg-8
+        %ol.leaderboard
+          - weekly_users.each_with_index do |u, i|
+            = render 'user_weekly', user: u, index: i + 1
+    .row
+      %h3
+        All the time:
+    .row
       .col-lg-8
         %ol.leaderboard
           - users.each_with_index do |u, i|
