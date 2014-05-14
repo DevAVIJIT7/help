@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     @topic_ids.include?(topic.id)
   end
 
+  def self.sort_weekly
+    all.sort_by{ |s| s.week_supports_count }.reverse.take(7)
+  end
+
   def week_supports_count
     x = 0
     supports.each do |s|
