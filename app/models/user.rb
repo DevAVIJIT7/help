@@ -27,4 +27,14 @@ class User < ActiveRecord::Base
     @topic_ids.include?(topic.id)
   end
 
+  def week_supports_count
+    x = 0
+    supports.each do |s|
+      if s.updated_at < Time.now && s.updated_at > 1.week.ago(Time.now)
+        x += 1
+      end
+    end
+    return x
+  end
+
 end
