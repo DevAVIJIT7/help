@@ -93,10 +93,14 @@ For now we did not yet develop any admin panel for the application. You will hav
 ```ruby
 > heroku run rails console
 
-irb(main):001:0> Topic.create(title: 'test category')
-=> #<Topic id: 3, title: "test category">
-irb(main):002:0> Topic.create(title: 'anoter help subject')
-=> #<Topic id: 4, title: "anoter help subject">
+irb(main):001:0> Topic.create(title: 'test category', description: 'test description')
+=> #<Topic id: 3, title: "test category", description: "test description">
+irb(main):002:0> Topic.create(title: 'anoter help subject', description: 'another topic description')
+=> #<Topic id: 4, title: "anoter help subject", description: "another topic description">
+
+```
+Title have to be present and have minimum 3 characters.
+Description have to be present also and have minimum 6 characters.
 ```
 
 ## Read more
