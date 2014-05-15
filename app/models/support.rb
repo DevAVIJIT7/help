@@ -8,6 +8,7 @@ class Support < ActiveRecord::Base
   scope :done, -> { where(done: true) }
   scope :not_done, -> { where(done: false) }
   default_scope -> { order(created_at: :desc) }
+  scope :supports_from_n_days, -> (n) { where(Support.arel_table[:updated_at].gt(n.days.ago)) }
 
   def discussed?
     comments_count > 0
