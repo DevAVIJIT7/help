@@ -25,7 +25,6 @@ class UserDecorator < Draper::Decorator
   end
 
   def weekly
-    object.week_supports_count
+    object.supports_from_n_days_count (7)
   end
-
 end
