@@ -101,7 +101,6 @@ irb(main):002:0> Topic.create(title: 'anoter help subject', description: 'anothe
 ```
 Title have to be present and have minimum 3 characters.
 Description have to be present also and have minimum 6 characters.
-```
 
 ## Read more
 
