@@ -1,6 +1,6 @@
 class TopicDecorator < Draper::Decorator
   decorates :topic
-  delegate :title, :id
+  delegate :title, :id, :description
 
   def users_count
     object.skills_count.to_i
