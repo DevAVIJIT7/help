@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     SQL
   end
 
-  def supports_from_n_days_count(n)
-    supports.supports_from_n_days(n).count
+  def supports_from_beginning_of_week_count
+    supports.from_beginning_of_week.count
   end
 end
