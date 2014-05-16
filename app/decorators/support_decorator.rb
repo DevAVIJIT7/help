@@ -1,7 +1,7 @@
 class SupportDecorator < Draper::Decorator
 
   decorates :support
-  delegate :done?, :body, :discussed?, :receiver, :user
+  delegate :done?, :body, :discussed?, :receiver, :user, :updated_at
 
   def topic
     "#{topic.title}"
