@@ -22,4 +22,7 @@
     @include font-size(fs(5));
     @include font-family($base_font_family, $bold_font);
   }
+  &__paging {
+    text-align: center;
+  }
 }

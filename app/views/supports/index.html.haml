@@ -9,6 +9,10 @@
         %td Problem
         %td Asked by
         %td Helped by
-      - supports.each_with_index do |s, i|
+      - @supports.each_with_index do |s, i|
         %tr.request__list
           =render 'list', support: s, index: i
+  .row
+    .request__paging
+      %p= page_entries_info @supports
+      %p= will_paginate @supports, :container => false
