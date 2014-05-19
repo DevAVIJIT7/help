@@ -6,7 +6,6 @@ class SupportsController < ApplicationController
   expose_decorated(:supports) { Support.all }
 
   def index
-    @supports = Support.order(updated_at: :desc).paginate(:page => params[:page], :per_page => 20)
   end
 
   def create
