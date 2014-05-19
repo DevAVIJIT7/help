@@ -11,8 +11,8 @@ class Support < ActiveRecord::Base
 
   scope :filter_by_topic, -> (topic) { joins(:topic).where(topics: {title: topic} ) }
   scope :filter_by_problem, -> (problem) { where(body: problem) }
-  scope :filter_by_receiver, -> (receiver) { joins(:receiver).where(users: {first_name: receiver} ) and joins(:receiver).where(users: {last_name: receiver} ) }
-  scope :filter_by_user, -> (user) { joins(:user).where(users: {first_name: user} ) and joins(:user).where(users: {first_name: user} ) }
+  scope :filter_by_receiver, -> (receiver) { joins(:receiver).where("first_name = ? OR last_name = ?", receiver, receiver ) }
+  scope :filter_by_user, -> (user) { joins(:user).where("first_name = ? OR last_name = ?", user, user ) }
 
   def discussed?
     comments_count > 0
