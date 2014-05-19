@@ -3,14 +3,26 @@
     %h2 All requests
   .row
     %table.request
-      %tr.request__header
-        %td
-        %td Date
-        %td Topic
-        %td Problem
-        %td Asked by
-        %td Helped by
-      - @supports.each_with_index do |s, i|
+      = simple_form_for :query, url: request.url, method: :get do |f|
+        %tr.request__header
+          %td.request__done
+            = f.collection_radio_buttons :search_done, [['all', 'All'] ,['done', 'Done'], ['notdone', 'Not done']], :first, :last, required: true
+          %td.request__date
+            Date
+          %td.request__topic
+            = f.input :search_topic, label: 'Topic:', required: false
+          %td.request__problem
+            = f.input :search_problem, label: 'Problem:', required: false
+          %td.request__receiver
+            = f.input :search_receiver, label: 'Asked by:', required: false
+          %td.request__user
+            = f.input :search_user, label: 'Helped by:', required: false
+        %tr.request__header
+          %td
+          %td
+          %td
+          %td
+            = f.submit 'Search'
         %tr.request__list
           =render 'list', support: s, index: i
   .row
