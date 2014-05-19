@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
   has_many :users, through: :skills
   has_many :skills
 
-  default_scope -> { order(:id) }
+  default_scope -> { order(:title) }
 
   def to_s
     title

@@ -7,7 +7,7 @@ class Support < ActiveRecord::Base
 
   scope :done, -> { where(done: true) }
   scope :not_done, -> { where(done: false) }
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(updated_at: :desc) }
 
   def discussed?
     comments_count > 0
