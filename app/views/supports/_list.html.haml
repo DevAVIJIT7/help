@@ -1,4 +1,4 @@
-%td.request__done
+%td.request__state
   - if support.done?
     .image
       = image_tag('i/status-done.png')
@@ -10,8 +10,10 @@
 %td.request__topic
   = support.topic
 %td.request__body
-  = support.body
+  - if support.body
+    = support.body[0..130]
+  = link_to "Read all (#{support.comments_count})", support
 %td.request__receiver
-  = support.receiver
+  = link_to support.receiver, user_path(support.receiver)
 %td.request__user
-  = support.user
+  = link_to support.user, user_path(support.user)
