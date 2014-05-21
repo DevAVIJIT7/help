@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :received_supports, as: :receiver
   has_many :comments
 
+  scope :sorted, -> { order('supports_count DESC, lower(first_name) ASC') }
+
   def name
     "#{first_name} #{last_name}".strip
   end
