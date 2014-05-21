@@ -25,6 +25,6 @@ class UserDecorator < Draper::Decorator
   end
 
   def user_points_from_beginning_of_week
-    object.supports_from_beginning_of_week_count
+    object.supports.from_beginning_of_week.count
   end
 end

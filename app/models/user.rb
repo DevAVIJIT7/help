@@ -35,8 +35,5 @@ class User < ActiveRecord::Base
     order('count(supports.updated_at) DESC, lower(first_name) ASC').
     limit(5)
   end
-
-  def supports_from_beginning_of_week_count
-    supports.from_beginning_of_week.count
   end
 end
