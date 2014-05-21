@@ -8,7 +8,9 @@ class Support < ActiveRecord::Base
   scope :done, -> { where(done: true) }
   scope :not_done, -> { where(done: false) }
   default_scope -> { order(created_at: :desc) }
-  scope :from_beginning_of_week, -> { where(arel_table[:updated_at].gt(Time.now.beginning_of_week)) and done }
+  scope :from_beginning_of_week, -> {
+    where(arel_table[:updated_at].gt(Time.now.beginning_of_week).
+    and(arel_table[:done].eq(true))) }
 
   def discussed?
     comments_count > 0
