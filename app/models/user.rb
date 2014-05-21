@@ -27,14 +27,13 @@ class User < ActiveRecord::Base
     @topic_ids.include?(topic.id)
   end
 
-  def self.sort_weekly
-    User.connection.select_all <<-SQL.squish
-      select users.* from users
-      left join supports on users.id = supports.user_id
-      where done=true
-      group by users.id
-      order by count(supports.created_at > '2014-05-15 12:00:00')
-    SQL
+  def self.this_week_best_users
+    joins(:supports).
+    where('supports.done = ? AND supports.updated_at >= ?',
+    true, Time.now.beginning_of_week).
+    group('users.id').
+    order('count(supports.updated_at) DESC, lower(first_name) ASC').
+    limit(5)
   end
 
   def supports_from_beginning_of_week_count
