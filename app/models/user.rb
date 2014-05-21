@@ -28,12 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def self.this_week_best_users
-    joins(:supports).
-    where('supports.done = ? AND supports.updated_at >= ?',
-    true, Time.now.beginning_of_week).
-    group('users.id').
-    order('count(supports.updated_at) DESC, lower(first_name) ASC').
-    limit(5)
-  end
+    joins(:supports)
+    .where('supports.done = ? AND supports.updated_at >= ?',
+      true, Time.now.beginning_of_week)
+    .group('users.id')
+    .order('count(supports.updated_at) DESC, lower(first_name) ASC')
+    .limit(10)
   end
 end
