@@ -1,17 +1,17 @@
 class SupportSearch < Searchlight::Search
 
-  search_on Support.all
+  search_on Support
 
   searches :body, :topic_id, :receiver_id, :user_id, :state
 
   def search_state
     case state
     when 'done'
-      search.where(done: true)
+      search.done
     when 'notdone'
-      search.where(done: false)
+      search.not_done
     else
-      search.all
+      search
     end
   end
 

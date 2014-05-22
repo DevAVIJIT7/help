@@ -13,7 +13,6 @@
             = f.input :topic_id, collection: Topic.all, required: false, selected: topic_id, include_blank: true
           %td.request__problem
             = f.input :body, label: 'Problem:', required: false, input_html: { value: body }
-            //, input_html: { value: params[:search].present? ? params[:search][:body] : '' }
           %td.request__receiver
             = f.input :receiver_id, collection: User.all, required: false, selected: receiver_id, include_blank: true
           %td.request__user
@@ -39,4 +38,4 @@
   .row
     .request
       %p= page_entries_info supports
-      %p= will_paginate supports, :container => false
+      %p= will_paginate supports, container: false

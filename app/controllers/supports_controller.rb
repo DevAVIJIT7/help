@@ -4,15 +4,18 @@ class SupportsController < ApplicationController
   expose_decorated(:support)  { Support.find(params[:id]) }
   expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
 
-  expose_decorated(:supports, decorator: SupportCollectionDecorator) do
-    SupportSearch.new(params[:search]).results.paginate(page: params[:page], per_page: 20)
-  end
+  expose_decorated(:supports, decorator: SupportCollectionDecorator)
 
   %i(topic_id body receiver_id user_id).each do |name|
     expose(name) { params[:search].present? ? params[:search][name] : nil }
   end
 
   expose(:state) { params[:search].present? ? params[:search][:state] : 'all' }
+
+  def index
+    search = SupportSearch.new params[:search]
+    self.supports = search.results.paginate(page: params[:page], per_page: 20)
+  end
 
   def create
     need_support = AskForSupport.new(current_user.object, topic, support_params)
