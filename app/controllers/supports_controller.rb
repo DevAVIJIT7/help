@@ -5,12 +5,7 @@ class SupportsController < ApplicationController
   expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
 
   expose_decorated(:supports, decorator: SupportCollectionDecorator)
-
-  %i(topic_id body receiver_id user_id).each do |name|
-    expose(name) { params[:search].present? ? params[:search][name] : nil }
-  end
-
-  expose(:state) { params[:search].present? ? params[:search][:state] : 'all' }
+  expose(:search_form) { FormsController::SearchForm.new(params[:search]) }
 
   def index
     search = SupportSearch.new params[:search]
