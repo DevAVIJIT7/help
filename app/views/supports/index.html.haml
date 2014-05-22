@@ -4,26 +4,26 @@
   .row
 
     %table.request
-      = simple_form_for :query, url: request.url, method: :get do |f|
+      = simple_form_for :search, url: request.url, method: :get do |f|
         %tr.request
           %td.request__state
-            = f.collection_radio_buttons :search_state, [['all', 'All'] ,['done', 'Done'], ['notdone', 'Not done']], :first, :last, checked: search_state.present? ? search_state : 'all'
+            = f.collection_radio_buttons :state, [['all', 'All'] ,['done', 'Done'], ['notdone', 'Not done']], :first, :last, checked: state
           %td.request__date
           %td.request__topic
-            = f.input :search_topic, label: 'Topic:', required: false, input_html: { value: search_topic }
+            = f.input :topic_id, collection: Topic.all, required: false, selected: topic_id, include_blank: true
           %td.request__problem
-            = f.input :search_problem, label: 'Problem:', required: false, input_html: { value: search_problem }
+            = f.input :body, label: 'Problem:', required: false, input_html: { value: body }
+            //, input_html: { value: params[:search].present? ? params[:search][:body] : '' }
           %td.request__receiver
-            = f.input :search_receiver, label: 'Asked by:', required: false, input_html: { value: search_receiver }
+            = f.input :receiver_id, collection: User.all, required: false, selected: receiver_id, include_blank: true
           %td.request__user
-            = f.input :search_user, label: 'Assigned to:', required: false, input_html: { value: search_user }
+            = f.input :user_id, collection: User.all, required: false, selected: user_id, include_blank: true
         %tr.request__header
           %td
           %td
           %td
           %td
             = f.submit 'Search'
-
     %table.request
       %tr.request__header.request__list
         %td.request__state State:
@@ -32,9 +32,10 @@
         %td.request__problem Problem:
         %td.request__receiver Asked by:
         %td.request__user Assigned to:
-      - supports.each_with_index do |s, i|
+
+      - supports.each_with_index do |support, i|
         %tr.request__list
-          =render 'list', support: s, index: i
+          = render 'list', support: support, index: i
   .row
     .request
       %p= page_entries_info supports
