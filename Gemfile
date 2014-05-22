@@ -23,6 +23,7 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'rollbar'
 gem 'will_paginate'
+gem 'searchlight'
 
 group :development do
   gem 'letter_opener'
