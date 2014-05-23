@@ -5,10 +5,11 @@ class SupportsController < ApplicationController
   expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
 
   expose_decorated(:supports, decorator: SupportCollectionDecorator)
-  expose(:search_form) { FormsController::SearchForm.new(params[:search]) }
+  expose(:search_form)
 
   def index
-    search = SupportSearch.new params[:search]
+    self.search_form = SupportSearchForm.new Support.new(search_params)
+    search = SupportSearch.new params[:support_search]
     self.supports = search.results.paginate(page: params[:page], per_page: 20)
   end
 
@@ -49,5 +50,12 @@ class SupportsController < ApplicationController
 
   def support_params
     params.fetch(:support, {}).permit(:body, :user_id)
+  end
+
+  def search_params
+    params[:support_search].present? ?
+      params.require(:support_search)
+              .permit(:topic_id, :body, :user_id, :receiver_id)
+      : return
   end
 end
