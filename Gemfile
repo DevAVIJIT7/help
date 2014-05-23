@@ -24,7 +24,7 @@ gem 'decent_decoration'
 gem 'rollbar'
 gem 'will_paginate'
 gem 'searchlight'
-gem 'activemodel-form'
+gem 'reform'
 
 group :development do
   gem 'letter_opener'
