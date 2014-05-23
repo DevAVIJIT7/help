@@ -94,8 +94,8 @@ class SupportDecorator < Draper::Decorator
 
   def finish_button(text = nil, confirmation = nil)
     text ||= 'Mark as resolved'
-    confirmation ||= 'Are you sure you are done helping? This action will also
-                      set you as a supporter for this issue.'
+    confirmation ||=  'Are you sure you are done helping? This action will '\
+                      'also set you as a supporter for this issue.'
     h.link_to h.raw(text), h.finish_support_path(object),
       method: :post,
       data: { confirm: confirmation },
