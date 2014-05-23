@@ -13,7 +13,11 @@ class Topic < ActiveRecord::Base
   end
 
   def users_count
-    skills_count
+    active_skills_count
+  end
+
+  def active_skills_count
+    skills.active.count
   end
 
 end
