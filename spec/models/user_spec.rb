@@ -3,13 +3,8 @@ require 'spec_helper'
 describe User do
   subject {  described_class.new }
 
-  let!(:user1) { User.create(email: 'root@root.pl') }
-  let!(:user2) { User.create(email: 'root@root.pl') }
-  let!(:support1) { Support.create(user_id: user1.id, receiver_id: user1.id, done: false) }
-  let!(:support2) { Support.create(user_id: user2.id, receiver_id: user2.id, done: true) }
-
   describe '#name' do
-    context 'when first and last name are valid' do
+    context 'when first and last name are present' do
       it 'returns first and last name' do
         subject.first_name = 'first'
         subject.last_name = 'last'
@@ -20,74 +15,74 @@ describe User do
     context 'when first name is valid and last is not' do
       it 'returns first name' do
         subject.first_name = 'first'
-        expect(subject.name).to eq('first')
+        expect(subject.name).to eq 'first'
       end
     end
 
     context 'when last name is valid and first is not' do
       it 'returns last name' do
         subject.last_name = 'last'
-        expect(subject.name).to eq('last')
+        expect(subject.name).to eq 'last'
       end
     end
 
     context 'when first and last name are not valid' do
       it 'returns nothing' do
-        expect(subject.name).to eq('')
+        expect(subject.name).to eq ''
       end
     end
   end
 
   describe '#to_s' do
-    context 'when name is valid' do
+    context 'when name is a string' do
       it 'returns name' do
-        subject.first_name = 'first'
-        subject.last_name = 'last'
-        expect(subject.to_s).to eq('first last')
+        name = 'foo bar'
+        expect(subject).to receive(:name).and_return(name)
+        expect(subject.to_s).to eq name
       end
     end
 
-    context 'when name is valid' do
-      it 'returns name' do
+    context 'when name is empty' do
+      it 'returns empty string' do
+        expect(subject).to receive(:name).and_return('')
         expect(subject.to_s).to eq('')
       end
     end
   end
 
   describe '#pending_supports_count' do
-    context 'has no supports' do
-      it 'returns zero' do
+    context 'returns zero' do
+      it 'it when user has no supports' do
         expect(subject.pending_supports_count).to eq(0)
       end
-    end
 
-    context 'has only done supports' do
-      it 'returns zero' do
-        expect(user2.pending_supports_count).to eq(0)
+      it 'it when user has only done supports' do
+        user = User.create(email: 'root@root.pl')
+        Support.create!(user_id: user.id,
+                        receiver_id: user.id,
+                        done: true)
+        expect(user.pending_supports_count).to eq 0
       end
     end
 
-    context 'has not done supports' do
-        it 'returns a number' do
-        expect(user1.pending_supports_count).to eq(user1.supports.not_done.count)
-      end
+    it 'returns a number of supports when user has some unfinished supports' do
+      user = User.create(email: 'root@root.pl')
+      Support.create!(user_id: user.id,
+                      receiver_id: user.id)
+      expect(user.pending_supports_count).to eq 1
     end
   end
 
   describe '#has_pending_supports?' do
-    context 'has pending supports' do
-      it 'returns true' do
-        expect(user1).to receive(:pending_supports_count).and_return(user1.supports.not_done.count)
-        expect(user1.has_pending_supports?).to eq(true)
-      end
+    it 'returns true when there are pending supports' do
+      user = User.create(email: 'root@root.pl')
+      Support.create!(user_id: user.id,
+                      receiver_id: user.id)
+      expect(user.has_pending_supports?).to be true
     end
 
-    context 'has no pending supports' do
-      it 'returns false' do
-        expect(user2).to receive(:pending_supports_count).and_return(user2.supports.not_done.count)
-        expect(user2.has_pending_supports?).to eq(false)
-      end
+    it 'returns false there is are no pending supports ' do
+      expect(subject.has_pending_supports?).to be false
     end
   end
-
 end
