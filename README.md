@@ -15,6 +15,8 @@ The flow is quite simple:
 
 TL;DR: you select what you can help with or application selects somebody to help you
 
+![main page](https://netguruco-production.s3.amazonaws.com/uploads/1400162300-help_main_page.png)
+
 ## Deploying
 This is just a simple rails app, can be easly deployed to heroku under < 5 time mark :)
 Once you have your heroku.com account set up, do this:
@@ -105,5 +107,7 @@ Description have to be present also and have minimum 6 characters.
 ## Read more
 
 Read more about the app & story behind at [Open Source App To Support Your Culture](https://netguru.co/blog/posts/open-source-app-to-support-your-culture).
+
+Here a bit about the [app's redesign & enhancing user experience](https://netguru.co/blog/posts/redesign-this-is-what-we-did-to-make-our-open-source-app-work-and-look-slick).
 
 Copyright (c) 2014 [Netguru](https://netguru.co). See LICENSE for further details.
