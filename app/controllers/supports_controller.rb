@@ -53,9 +53,7 @@ class SupportsController < ApplicationController
   end
 
   def search_params
-    params[:support_search].present? ?
-      params.require(:support_search)
-              .permit(:topic_id, :body, :user_id, :receiver_id)
-      : return
+    params.fetch(:support_search, {})
+      .permit(:topic_id, :body, :user_id, :receiver_id)
   end
 end
