@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :received_supports, as: :receiver
   has_many :comments
 
+  scope :not_archived, -> { where(archived: false) }
+
   def name
     "#{first_name} #{last_name}".strip
   end
