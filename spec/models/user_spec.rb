@@ -3,12 +3,6 @@ require 'spec_helper'
 describe User do
   subject {  described_class.new }
 
-  # it { should have_many(:skills) }
-  # it { should have_many :topics }
-  # it { should have_many :supports }
-  # it { should have_many :received_supports }
-  # it { should have_many :comments }
-
   let!(:user1) { User.create(email: 'root@root.pl') }
   let!(:user2) { User.create(email: 'root@root.pl') }
   let!(:support1) { Support.create(user_id: user1.id, receiver_id: user1.id, done: false) }
