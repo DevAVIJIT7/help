@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   subject {  described_class.new }
+  let(:user) { User.create(email: 'root@root.pl') }
 
   describe '#name' do
     context 'when first and last name are present' do
@@ -50,6 +51,19 @@ describe User do
     end
   end
 
+  describe '#helps_with?' do
+    let(:topic) { Topic.create(title: 'foo', description: 'bar') }
+
+    it 'return true if user is familiar with the topic' do
+      Skill.create(user_id: user.id, topic_id: topic.id)
+      expect(user.helps_with?(topic)).to be true
+    end
+
+    it "return false if user isn't familiar with the topic" do
+      expect(subject.helps_with?(topic)).to be false
+    end
+  end
+
   describe '#pending_supports_count' do
     context 'returns zero' do
       it 'it when user has no supports' do
@@ -57,7 +71,6 @@ describe User do
       end
 
       it 'it when user has only done supports' do
-        user = User.create(email: 'root@root.pl')
         Support.create!(user_id: user.id,
                         receiver_id: user.id,
                         done: true)
@@ -66,7 +79,6 @@ describe User do
     end
 
     it 'returns a number of supports when user has some unfinished supports' do
-      user = User.create(email: 'root@root.pl')
       Support.create!(user_id: user.id,
                       receiver_id: user.id)
       expect(user.pending_supports_count).to eq 1
@@ -75,7 +87,6 @@ describe User do
 
   describe '#has_pending_supports?' do
     it 'returns true when there are pending supports' do
-      user = User.create(email: 'root@root.pl')
       Support.create!(user_id: user.id,
                       receiver_id: user.id)
       expect(user.has_pending_supports?).to be true

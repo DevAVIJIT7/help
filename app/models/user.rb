@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def helps_with?(topic)
-    @topic_ids ||= skills.pluck(:topic_id)
-    @topic_ids.include?(topic.id)
+    skills.where(topic_id: topic.id).any?
   end
 
   def self.this_week_best_users
