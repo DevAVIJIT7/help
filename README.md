@@ -15,6 +15,8 @@ The flow is quite simple:
 
 TL;DR: you select what you can help with or application selects somebody to help you
 
+![main page](https://netguruco-production.s3.amazonaws.com/uploads/1400162300-help_main_page.png)
+
 ## Deploying
 This is just a simple rails app, can be easly deployed to heroku under < 5 time mark :)
 Once you have your heroku.com account set up, do this:
@@ -93,14 +95,19 @@ For now we did not yet develop any admin panel for the application. You will hav
 ```ruby
 > heroku run rails console
 
-irb(main):001:0> Topic.create(title: 'test category')
-=> #<Topic id: 3, title: "test category">
-irb(main):002:0> Topic.create(title: 'anoter help subject')
-=> #<Topic id: 4, title: "anoter help subject">
+irb(main):001:0> Topic.create(title: 'test category', description: 'test description')
+=> #<Topic id: 3, title: "test category", description: "test description">
+irb(main):002:0> Topic.create(title: 'anoter help subject', description: 'another topic description')
+=> #<Topic id: 4, title: "anoter help subject", description: "another topic description">
+
 ```
+Title have to be present and have minimum 3 characters.
+Description have to be present also and have minimum 6 characters.
 
 ## Read more
 
 Read more about the app & story behind at [Open Source App To Support Your Culture](https://netguru.co/blog/posts/open-source-app-to-support-your-culture).
+
+Here a bit about the [app's redesign & enhancing user experience](https://netguru.co/blog/posts/redesign-this-is-what-we-did-to-make-our-open-source-app-work-and-look-slick).
 
 Copyright (c) 2014 [Netguru](https://netguru.co). See LICENSE for further details.
