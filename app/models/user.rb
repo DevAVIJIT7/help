@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def has_pending_supports?
-    pending_supports_count > 0
+    supports.not_done.any?
   end
 
   def pending_supports_count
