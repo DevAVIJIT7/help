@@ -17,7 +17,8 @@ class ArchiveUser
   end
 
   def delete_skills
-    user.skills.destroy
-    user.skills_count = 0
+    user.skills.each do |skill|
+      skill.destroy
+    end
   end
 end

@@ -3,7 +3,7 @@ class TopicDecorator < Draper::Decorator
   delegate :title, :id, :description
 
   def users_count
-    object.active_skills_count.to_i
+    object.skills_count.to_i
   end
 
   def small_title
