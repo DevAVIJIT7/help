@@ -11,7 +11,7 @@
       .col-lg-8
         %ol.leaderboard
           - this_week_users.each_with_index do |u, i|
-            = render 'user', user: u, index: i + 1, supports_count: u.user_points_from_beginning_of_week
+            = render 'user', user: u, index: i + 1, supports_count: u.points_from_beginning_of_week
     .row
       %h3
         All the time:
