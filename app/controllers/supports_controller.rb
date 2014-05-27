@@ -52,9 +52,4 @@ class SupportsController < ApplicationController
   def support_params
     params.fetch(:support, {}).permit(:body, :user_id)
   end
-
-  def search_params
-    params.fetch(:support_search, {})
-      .permit(:topic_id, :body, :user_id, :receiver_id)
-  end
 end
