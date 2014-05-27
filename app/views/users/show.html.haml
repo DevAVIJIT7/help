@@ -11,7 +11,7 @@
             %strong= user.supports_count
             times
           %h4
-            - if user.archived
+            - if user.archived?
               This user is
               %strong archived
 

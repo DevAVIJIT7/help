@@ -2,7 +2,7 @@ class ArchiveUser
 
   attr_accessor :user
 
-  def initialize user
+  def initialize(user)
     self.user = user
   end
 
@@ -17,8 +17,6 @@ class ArchiveUser
   end
 
   def delete_skills
-    user.skills.each do |skill|
-      skill.destroy
-    end
+    user.skills.destroy_all
   end
 end
