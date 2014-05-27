@@ -5,21 +5,19 @@ class SupportSearchForm < Reform::Form
   property :receiver_id
   property :user_id
 
-  def set_previous_search(params)
-    get_params(params)
-    set_fields
-  end
+  attr_accessor :search_params
 
-  def get_params(params)
-    @search_params = params
+  def set_previous_search(params)
+    self.search_params = params
+    set_fields
   end
 
   def set_fields
     if @search_params.present?
-      @fields.topic_id = @search_params[:topic_id]
-      @fields.body = @search_params[:body]
-      @fields.receiver_id = @search_params[:receiver_id]
-      @fields.user_id = @search_params[:user_id]
+      @fields.topic_id = search_params[:topic_id]
+      @fields.body = search_params[:body]
+      @fields.receiver_id = search_params[:receiver_id]
+      @fields.user_id = search_params[:user_id]
     end
   end
 
@@ -39,7 +37,7 @@ class SupportSearchForm < Reform::Form
     ]
   end
 
-  def get_state
-    @search_params.present? ? @search_params[:state] : 'all'
+  def state
+    search_params.present? ? search_params[:state] : 'all'
   end
 end
