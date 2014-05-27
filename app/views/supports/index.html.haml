@@ -24,17 +24,18 @@
           %td
             = f.submit 'Search'
     %table.request
-      %tr.request__header.request__list
-        %td.request__state State:
-        %td.request__date Updated:
-        %td.request__topic Topic:
-        %td.request__problem Problem:
-        %td.request__receiver Asked by:
-        %td.request__user Assigned to:
-
-      - supports.each_with_index do |support, i|
-        %tr.request__list
-          = render 'list', support: support, index: i
+      %thead
+        %tr.request__header.request__list
+          %th.request__state State:
+          %th.request__date Updated:
+          %th.request__topic Topic:
+          %th.request__problem Problem:
+          %th.request__receiver Asked by:
+          %th.request__user Assigned to:
+      %tbody
+        - supports.each_with_index do |support, i|
+          %tr.request__list
+            = render 'list', support: support, index: i
   .row
     .request
       %p= page_entries_info supports
