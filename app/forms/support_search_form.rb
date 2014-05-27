@@ -5,6 +5,24 @@ class SupportSearchForm < Reform::Form
   property :receiver_id
   property :user_id
 
+  def setup(params)
+    get_params(params)
+    set_fields
+  end
+
+  def get_params(params)
+    @search_params = params
+  end
+
+  def set_fields
+    if @search_params.present?
+      @fields.topic_id = @search_params[:topic_id]
+      @fields.body = @search_params[:body]
+      @fields.receiver_id = @search_params[:receiver_id]
+      @fields.user_id = @search_params[:user_id]
+    end
+  end
+
   def users
     User.decorate
   end
@@ -21,7 +39,7 @@ class SupportSearchForm < Reform::Form
     ]
   end
 
-  def get_state(params)
-    params.present? ? params[:state] : 'all'
+  def get_state
+    @search_params.present? ? @search_params[:state] : 'all'
   end
 end
