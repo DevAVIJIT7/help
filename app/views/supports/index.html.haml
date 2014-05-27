@@ -7,7 +7,7 @@
       = simple_form_for search_form, url: request.url, method: :get do |f|
         %tr.request
           %td.request__state
-            = f.input :state, collection: search_form.state, as: :radio_buttons, checked: search_form.get_state(params[:support_search])
+            = f.input :state, collection: search_form.states, as: :radio_buttons, checked: search_form.get_state(params[:support_search])
           %td.request__date
           %td.request__topic
             = f.input :topic_id, collection: search_form.topics

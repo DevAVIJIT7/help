@@ -13,7 +13,7 @@ class SupportSearchForm < Reform::Form
     Topic.decorate
   end
 
-  def state
+  def states
     [
       ['All', :all],
       ['Done', :done],
