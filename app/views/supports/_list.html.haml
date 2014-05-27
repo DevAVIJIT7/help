@@ -10,8 +10,7 @@
 %td.request__topic
   = support.topic
 %td.request__body
-  - if support.body
-    = support.body[0..130]
+  = support.truncated_body
   = link_to "Read all (#{support.comments_count})", support
 %td.request__receiver
   = link_to support.receiver, user_path(support.receiver)

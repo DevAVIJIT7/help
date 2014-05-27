@@ -85,6 +85,10 @@ class SupportDecorator < Draper::Decorator
     UserDecorator.decorate(object.topic)
   end
 
+  def truncated_body
+    body.present? ? body.truncate(150) : nil
+  end
+
   private
 
   def thanks_for_help_button
