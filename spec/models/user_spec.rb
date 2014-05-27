@@ -66,11 +66,11 @@ describe User do
 
   describe '#pending_supports_count' do
     context 'returns zero' do
-      it 'it when user has no supports' do
+      it 'when user has no supports' do
         expect(subject.pending_supports_count).to eq(0)
       end
 
-      it 'it when user has only done supports' do
+      it 'when user has only done supports' do
         Support.create!(user_id: user.id,
                         receiver_id: user.id,
                         done: true)
