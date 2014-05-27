@@ -19,6 +19,7 @@ class Support < ActiveRecord::Base
   end
 
   def self.from_beginning_of_week
-    done.where(arel_table[:updated_at].gt(Time.zone.now.beginning_of_week))
+    done
+    .where('supports.updated_at >= ?', Time.zone.now.beginning_of_week)
   end
 end

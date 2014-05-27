@@ -30,8 +30,7 @@ class User < ActiveRecord::Base
 
   def self.this_week_best_users
     joins(:supports)
-      .where(supports: { done: true })
-      .where('supports.updated_at >= ?', Time.zone.now.beginning_of_week)
+      .merge(Support.unscoped.from_beginning_of_week)
       .group('users.id')
       .order('count(supports.updated_at) DESC, lower(first_name) ASC')
       .limit(10)
