@@ -5,7 +5,7 @@ class SupportSearchForm < Reform::Form
   property :receiver_id
   property :user_id
 
-  def setup(params)
+  def set_previous_search(params)
     get_params(params)
     set_fields
   end
