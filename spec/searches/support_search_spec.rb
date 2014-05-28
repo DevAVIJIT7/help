@@ -1,59 +1,64 @@
 require 'spec_helper'
 
 describe SupportSearch do
-  subject { described_class.new }
-
-  describe '#search_body' do
-    context 'body is present' do
-      it 'searches through body field' do
-        expect(subject.search_body).to match_array(subject.search.where('body ILIKE ?', "%test%"))
-      end
-    end
-  end
-
-  describe '#search_topic_id' do
-    context 'topic_id is present' do
-      it 'searches through topic_id' do
-        expect(subject.search_topic_id).to match_array(subject.search.where(topic_id: 1))
-      end
-    end
-  end
-
-  describe '#search_receiver_id' do
-    context 'receiver_id is present' do
-      it 'searches through receiver_id' do
-        expect(subject.search_receiver_id).to match_array(subject.search.where(receiver_id: 1))
-      end
-    end
-  end
-
-  describe '#search_user_id' do
-    context 'user_id is present' do
-      it 'searches through user_id' do
-        expect(subject.search_user_id).to match_array(subject.search.where(user_id: 1))
-      end
-    end
-  end
-
-  describe '#search_state' do
-    context 'state is done' do
-      it 'chooses only done supports' do
-        subject.state = 'done'
-        expect(subject.search_state).to match_array(subject.search.done)
-      end
+  describe '#results' do
+    def prepare_supports
+      @support ||= Support.create!(user_id: 1,
+                                   topic_id: 11,
+                                   receiver_id: 111,
+                                   body: 'foo bar baz')
+      @done_support ||= Support.create!(user_id: 2,
+                                        topic_id: 22,
+                                        receiver_id: 222,
+                                        body: 'bingo mingo mongo',
+                                        done: true)
     end
 
-    context 'state is not done' do
-      it 'chooses only not done supports' do
-        subject.state = 'notdone'
-        expect(subject.search_state).to match_array(subject.search.not_done)
-      end
+    before :all do
+      prepare_supports
     end
 
-    context 'state is all' do
-      it 'chooses all supports' do
-        subject.state = 'all'
-        expect(subject.search_state).to eq(subject.search)
+    describe 'filters supports by' do
+      let!(:support) { @support }
+      let!(:done_support) { @done_support }
+
+      it 'user_id' do
+        search_attrs = { user_id: support.user_id }
+        expect(SupportSearch.new(search_attrs).results).to eq [support]
+      end
+
+      it 'receiver_id' do
+        search_attrs = { receiver_id: support.receiver_id }
+        expect(SupportSearch.new(search_attrs).results).to eq [support]
+      end
+
+      it 'receiver_id' do
+        search_attrs = { topic_id: support.topic_id }
+        expect(SupportSearch.new(search_attrs).results).to eq [support]
+      end
+
+      it 'body' do
+        search_attrs = { body: 'bar' }
+        expect(SupportSearch.new(search_attrs).results).to eq [support]
+      end
+
+      describe "state representing" do
+        it 'done supports' do
+          search_attrs = { state: 'done' }
+          expect(SupportSearch.new(search_attrs).results).to eq [done_support]
+        end
+
+        it 'pending supports' do
+          search_attrs = { state: 'notdone' }
+          expect(SupportSearch.new(search_attrs).results).to eq [support]
+        end
+
+        it 'all supports' do
+          search_attrs = { state: 'all' }
+          expect(SupportSearch.new(search_attrs).results).to match_array(
+            [support, done_support]
+          )
+        end
       end
     end
   end

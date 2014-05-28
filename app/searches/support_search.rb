@@ -14,7 +14,7 @@ class SupportSearch < Searchlight::Search
     when 'notdone'
       search.not_done
     else
-      search
+      search.all
     end
   end
 
