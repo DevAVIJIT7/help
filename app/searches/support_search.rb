@@ -4,6 +4,10 @@ class SupportSearch < Searchlight::Search
 
   searches :body, :topic_id, :receiver_id, :user_id, :state
 
+  def paginated_results(page_number)
+    results.paginate page: page_number, per_page: 20
+  end
+
   def search_state
     case state
     when 'done'
@@ -29,9 +33,5 @@ class SupportSearch < Searchlight::Search
 
   def search_user_id
     search.where(user_id: user_id)
-  end
-
-  def paginated_results(params)
-    results.paginate(page: params, per_page: 20)
   end
 end
