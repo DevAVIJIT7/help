@@ -1,14 +1,14 @@
-%td.request__state
+%td.request__column
   .image
     = image_tag("i/status-#{support.done? ? 'done' : 'new'}.png")
-%td.request__date
+%td.request__column
   = support.updated_at
-%td.request__topic
+%td.request__column
   = support.topic
 %td.request__body
   = support.truncated_body
   = link_to "View problem (#{pluralize(support.comments_count, 'comment')})", support
-%td.request__receiver
+%td.request__column
   = link_to support.receiver, user_path(support.receiver)
-%td.request__user
+%td.request__column
   = link_to support.user, user_path(support.user)

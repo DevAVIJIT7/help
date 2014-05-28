@@ -6,24 +6,12 @@
     height: 60px;
     border-bottom: color('border') 1px solid;
   }
-  &__state {
-    width: 10%;
-  }
-  &__date {
-    width: 10%;
-  }
-  &__topic {
+  &__column {
     width: 10%;
   }
   &__body {
     width: 50%;
     text-align: left;
-  }
-  &__user {
-    width: 10%;
-  }
-  &__receiver {
-    width: 10%;
   }
   &__header {
     @include font-size(fs(5));
