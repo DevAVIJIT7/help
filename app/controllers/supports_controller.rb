@@ -2,7 +2,7 @@ class SupportsController < ApplicationController
 
   expose_decorated(:topic)    { Topic.find(params[:topic_id]) }
   expose_decorated(:support)  { Support.find(params[:id]) }
-  expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
+  expose_decorated(:comments) { support.comments.sorted }
   expose(:search_form) { SupportSearchForm.new Support.new, params[:support_search] }
   expose(:search) { SupportSearch.new params[:support_search] }
   expose_decorated(:supports, decorator: SupportCollectionDecorator) do
