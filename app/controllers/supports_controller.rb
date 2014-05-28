@@ -10,10 +10,6 @@ class SupportsController < ApplicationController
   expose(:search)
 
   def index
-    self.search_form = SupportSearchForm.new Support.new
-    self.search_form.set_current_search_fields params[:support_search]
-    search = SupportSearch.new params[:support_search]
-    self.supports = search.results.paginate(page: params[:page], per_page: 20)
     self.search_form = SupportSearchForm.new(Support.new)
     self.search_form.validate(params[:support_search])
     self.search = SupportSearch.new params[:support_search]
