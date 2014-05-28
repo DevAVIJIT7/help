@@ -1,5 +1,4 @@
 class SupportSearch < Searchlight::Search
-
   search_on Support
 
   searches :body, :topic_id, :receiver_id, :user_id, :state
