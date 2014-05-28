@@ -86,7 +86,7 @@ class SupportDecorator < Draper::Decorator
   end
 
   def truncated_body
-    body.present? ? body.truncate(150) : nil
+    body.truncate(150) if body.present?
   end
 
   private

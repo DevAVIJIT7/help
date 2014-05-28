@@ -1,17 +1,13 @@
 %td.request__state
-  - if support.done?
-    .image
-      = image_tag('i/status-done.png')
-  - else
-    .image
-      = image_tag('i/status-new.png')
+  .image
+    = image_tag("i/status-#{support.done? ? 'done' : 'new'}.png")
 %td.request__date
   = support.updated_at
 %td.request__topic
   = support.topic
 %td.request__body
   = support.truncated_body
-  = link_to "View problem (#{support.comments_count} comments)", support
+  = link_to "View problem (#{pluralize(support.comments_count, 'comment')})", support
 %td.request__receiver
   = link_to support.receiver, user_path(support.receiver)
 %td.request__user
