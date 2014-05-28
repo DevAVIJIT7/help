@@ -4,14 +4,19 @@ class SupportsController < ApplicationController
   expose_decorated(:support)  { Support.find(params[:id]) }
   expose_decorated(:comments) { support.comments.includes(:user).order('created_at ASC') }
 
-  expose_decorated(:supports, decorator: SupportCollectionDecorator)
+  expose_decorated(:supports, decorator: SupportCollectionDecorator) {
+    search.paginated_results(params[:page]) }
   expose(:search_form)
+  expose(:search)
 
   def index
     self.search_form = SupportSearchForm.new Support.new
     self.search_form.set_current_search_fields params[:support_search]
     search = SupportSearch.new params[:support_search]
     self.supports = search.results.paginate(page: params[:page], per_page: 20)
+    self.search_form = SupportSearchForm.new(Support.new)
+    self.search_form.validate(params[:support_search])
+    self.search = SupportSearch.new params[:support_search]
   end
 
   def create

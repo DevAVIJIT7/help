@@ -30,4 +30,8 @@ class SupportSearch < Searchlight::Search
   def search_user_id
     search.where(user_id: user_id)
   end
+
+  def paginated_results(params)
+    results.paginate(page: params, per_page: 20)
+  end
 end
