@@ -1,23 +1,23 @@
 require 'spec_helper'
 
 describe SupportSearch do
+  before :all do
+    prepare_supports
+  end
+
+  def prepare_supports
+    @support ||= Support.create!(user_id: 1,
+                                 topic_id: 11,
+                                 receiver_id: 111,
+                                 body: 'foo bar baz')
+    @done_support ||= Support.create!(user_id: 2,
+                                      topic_id: 22,
+                                      receiver_id: 222,
+                                      body: 'bingo mingo mongo',
+                                      done: true)
+  end
+
   describe '#results' do
-    def prepare_supports
-      @support ||= Support.create!(user_id: 1,
-                                   topic_id: 11,
-                                   receiver_id: 111,
-                                   body: 'foo bar baz')
-      @done_support ||= Support.create!(user_id: 2,
-                                        topic_id: 22,
-                                        receiver_id: 222,
-                                        body: 'bingo mingo mongo',
-                                        done: true)
-    end
-
-    before :all do
-      prepare_supports
-    end
-
     describe 'filters supports by' do
       let!(:support) { @support }
       let!(:done_support) { @done_support }
@@ -63,10 +63,19 @@ describe SupportSearch do
     end
   end
 
-  describe '#paginated_results(page_number)' do
-    context 'paginate' do
-      it 'paginates searched supports' do
-        expect(subject.paginated_results(1)).to eq(subject.results.paginate page: 1, per_page: 20)
+  describe '#paginated_results' do
+    let(:search) { SupportSearch.new }
+
+    describe 'when only page number is passed' do
+      it 'it shows at least 2 records' do
+        expect(search.paginated_results(1).to_a.count).to be >= 1
+      end
+    end
+
+    describe 'when page number and per page number are passed' do
+      it 'it shows as many records as defined per page' do
+        expect(search.paginated_results(1, 1).to_a.count).to eq 1
+        expect(search.paginated_results(2, 1).to_a.count).to eq 1
       end
     end
   end

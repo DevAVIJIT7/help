@@ -3,8 +3,8 @@ class SupportSearch < Searchlight::Search
 
   searches :body, :topic_id, :receiver_id, :user_id, :state
 
-  def paginated_results(page_number)
-    results.paginate page: page_number, per_page: 20
+  def paginated_results(page_number, per_page = 20)
+    results.paginate page: page_number, per_page: per_page
   end
 
   def search_state
