@@ -7,18 +7,17 @@ class SupportSearchForm < Reform::Form
 
   attr_accessor :search_params
 
-  def set_current_search_fields(params)
-    self.search_params = params
-    set_fields
+  def initialize(model, search_params)
+    super model
+    assign_params search_params
   end
 
-  def set_fields
-    if @search_params.present?
-      self.topic_id = search_params[:topic_id]
-      self.body = search_params[:body]
-      self.receiver_id = search_params[:receiver_id]
-      self.user_id = search_params[:user_id]
-    end
+  def assign_params(_search_params)
+    self.search_params = _search_params || {}
+    self.topic_id      = search_params[:topic_id]
+    self.body          = search_params[:body]
+    self.receiver_id   = search_params[:receiver_id]
+    self.user_id       = search_params[:user_id]
   end
 
   def users
