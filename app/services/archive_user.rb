@@ -12,7 +12,7 @@ class ArchiveUser
   end
 
   def archive
-    user.archived = true
+    user.archived_at = Time.zone.now
   end
 
   def delete_skills
