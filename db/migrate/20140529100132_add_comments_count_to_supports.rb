@@ -2,7 +2,7 @@ class AddCommentsCountToSupports < ActiveRecord::Migration
   class Support < ActiveRecord::Base
     has_many :comments
   end
-  class Comment <ActiveRecord::Base
+  class Comment < ActiveRecord::Base
     belongs_to :support
   end
 
