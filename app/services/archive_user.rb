@@ -1,5 +1,4 @@
 class ArchiveUser
-
   attr_accessor :user
 
   def initialize(user)
