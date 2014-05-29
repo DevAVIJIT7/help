@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments
 
   default_scope { not_archived }
-  scope :not_archived, -> { where(archived: false) }
+  scope :not_archived, -> { where(archived_at: nil) }
 
   def name
     "#{first_name} #{last_name}".strip
@@ -30,4 +30,7 @@ class User < ActiveRecord::Base
     @topic_ids.include?(topic.id)
   end
 
+  def archived?
+    archived_at.present? ? true : false
+  end
 end
