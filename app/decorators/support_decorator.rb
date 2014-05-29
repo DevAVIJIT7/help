@@ -89,6 +89,11 @@ class SupportDecorator < Draper::Decorator
     body.truncate(150) if body.present?
   end
 
+  def state_image
+    status  = object.done? ? 'done' : 'new'
+    h.image_tag "i/status-#{status}.png"
+  end
+
   private
 
   def thanks_for_help_button

@@ -1,6 +1,6 @@
 %td.request__column
   .image
-    = image_tag("i/status-#{support.done? ? 'done' : 'new'}.png")
+    = support.state_image
 %td.request__column
   = support.updated_at
 %td.request__column
