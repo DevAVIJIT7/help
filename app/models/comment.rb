@@ -1,4 +1,4 @@
 class Comment < ActiveRecord::Base
-  belongs_to :support
+  belongs_to :support, counter_cache: true
   belongs_to :user
 end
