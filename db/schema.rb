@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523121619) do
+ActiveRecord::Schema.define(version: 20140529110953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20140523121619) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "receiver_id"
-    t.boolean  "done",        default: false
+    t.boolean  "done",           default: false
     t.text     "body"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "supports", ["receiver_id"], name: "index_supports_on_receiver_id", using: :btree
@@ -68,7 +69,7 @@ ActiveRecord::Schema.define(version: 20140523121619) do
     t.datetime "updated_at"
     t.integer  "skills_count",   default: 0
     t.integer  "supports_count", default: 0
-    t.boolean  "archived",       default: false
+    t.datetime "archived_at"
   end
 
 end
