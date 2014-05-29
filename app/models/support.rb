@@ -12,9 +12,4 @@ class Support < ActiveRecord::Base
   def discussed?
     comments_count > 0
   end
-
-  def comments_count
-    # TODO: replace with counter cache
-    comments.count
-  end
 end
