@@ -17,6 +17,6 @@ class ReplaceArchivedWithArchivedAtInUsers < ActiveRecord::Migration
     User.reset_column_information
     User.where.not(archived_at: nil).update_all(archived: true)
 
-    remove_column :users, :archived_at, :datetime
+    remove_column :users, :archived_at
   end
 end

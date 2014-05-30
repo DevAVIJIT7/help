@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def archived?
-    archived_at.present? ? true : false
+    archived_at.present?
   end
 end
