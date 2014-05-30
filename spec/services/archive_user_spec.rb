@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe ArchiveUser do
-  subject { described_class.new(User.new) }
-  let!(:user) { User.new }
 
   describe '#commence!' do
+    let(:user) { User.create }
+    let(:skill) { Skill.create(user_id: user.id) }
+    before { ArchiveUser.new(user).commence! }
+
     it 'sets archived_at field to time now' do
-      expect(subject.archive).to be_within(1.second).of(Time.zone.now)
+      expect(user.archived_at).to be_within(1.second).of(Time.zone.now)
     end
+
     it 'deletes user skills' do
-      expect(subject.delete_skills).to eq([])
-    end
-    it 'saves user' do
-      subject.commence!
+      expect(user.skills).to be_empty
     end
   end
 end
