@@ -10,7 +10,7 @@
     .row
       .col-lg-8
         %ol.leaderboard
-          - this_week_users.each_with_index do |u, i|
+          - this_week_best_users.each_with_index do |u, i|
             = render 'user', user: u, index: i + 1, supports_count: u.points_from_beginning_of_week
     .row
       %h3
