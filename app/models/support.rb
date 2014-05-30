@@ -20,6 +20,6 @@ class Support < ActiveRecord::Base
 
   def self.from_beginning_of_week
     done
-    .where('supports.updated_at >= ?', Time.zone.now.beginning_of_week)
+    .where('supports.updated_at >= ?', Time.current.beginning_of_week)
   end
 end
