@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20140530095202) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "receiver_id"
-    t.boolean  "done",        default: false
     t.text     "body"
+    t.boolean  "done",           default: false
+    t.integer  "comments_count", default: 0
   end
 
   add_index "supports", ["receiver_id"], name: "index_supports_on_receiver_id", using: :btree
