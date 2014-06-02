@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :received_supports, as: :receiver
   has_many :comments
 
-  default_scope -> { order('lower(first_name)') }
+  scope :sorted, -> { order('supports_count DESC, lower(first_name) ASC') }
 
   def name
     "#{first_name} #{last_name}".strip
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def has_pending_supports?
-    pending_supports_count > 0
+    supports.not_done.any?
   end
 
   def pending_supports_count
@@ -25,8 +25,14 @@ class User < ActiveRecord::Base
   end
 
   def helps_with?(topic)
-    @topic_ids ||= skills.pluck(:topic_id)
-    @topic_ids.include?(topic.id)
+    skills.where(topic_id: topic.id).any?
   end
 
+  def self.this_week_best_users
+    joins(:supports)
+      .merge(Support.unscoped.from_beginning_of_week)
+      .group('users.id')
+      .order('COUNT(supports) DESC, lower(first_name) ASC')
+      .limit(10)
+  end
 end
