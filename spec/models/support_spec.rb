@@ -1,44 +1,27 @@
 require 'spec_helper'
 
 describe Support do
-  subject {  described_class.new }
-
-  let!(:support1) { Support.create }
-  let!(:comment) { Comment.create(support_id: support1.id) }
+  subject { described_class.new }
 
   describe '#discussed?' do
-    context 'returns true' do
-      after :each do
-        expect(subject.discussed?).to be true
-      end
-
-      it 'when there are some comments' do
-        expect(subject).to receive(:comments_count).and_return(10)
-      end
-
+    it 'returns true when there are some comments' do
+      expect(subject).to receive(:comments_count).and_return(10)
+      expect(subject.discussed?).to be true
     end
-    context 'returns false' do
-      after :each do
-        expect(subject.discussed?).to be false
-      end
 
-      it 'when there are no comments' do
-        expect(subject).to receive(:comments_count).and_return(0)
-      end
+    it 'returns false when there are no comments' do
+      expect(subject).to receive(:comments_count).and_return(0)
+      expect(subject.discussed?).to be false
     end
   end
 
   describe '#comments_count' do
-    context 'has comments' do
-      it 'returns number other than 0' do
-        expect(support1.comments_count).to eq(support1.comments.count)
-      end
-    end
+    let!(:support) { Support.create! }
+    let!(:comment) { Comment.create!(support_id: support.id) }
 
-    context 'has no comments' do
-      it 'returns 0' do
-        expect(subject.comments_count).to eq(0)
-      end
+    it 'returns the number of commits' do
+      expect(support.reload.comments_count).to eq(1)
+      expect(subject.comments_count).to eq(0)
     end
   end
 end

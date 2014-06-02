@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  subject {  described_class.new }
-  let(:user) { User.create(email: 'root@root.pl') }
+  subject { described_class.new }
+  let(:user) { User.create(email: 'user@example.com') }
 
   describe '#name' do
     context 'when first and last name are present' do
