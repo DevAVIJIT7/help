@@ -31,14 +31,14 @@ class UserDecorator < Draper::Decorator
   def points_from_beginning_of_week
     object.supports.from_beginning_of_week.count
   end
-end
 
-class UserDecorator::Unavailable < UserDecorator
-  def to_s
-    'User unavailable'
-  end
+  class Unavailable < UserDecorator
+    def to_s
+      'User unavailable'
+    end
 
-  def profile_link
-    h.link_to self, '#'
+    def profile_link
+      h.link_to self, '#'
+    end
   end
 end
