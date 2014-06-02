@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     joins(:supports)
       .merge(Support.unscoped.from_beginning_of_week)
       .group('users.id')
-      .order('count(supports.updated_at) DESC, lower(first_name) ASC')
+      .order('COUNT(supports) DESC, lower(first_name) ASC')
       .limit(10)
   end
 end
