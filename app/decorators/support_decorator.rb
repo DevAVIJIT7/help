@@ -1,7 +1,12 @@
 class SupportDecorator < Draper::Decorator
 
   decorates :support
-  delegate :done?, :body, :discussed?
+  delegate :done?, :body, :discussed?, :receiver, :user,
+           :updated_at, :comments_count
+
+  def topic
+    topic.title
+  end
 
   def title
     h.raw "#{receiver} asked #{user} for help."
@@ -78,6 +83,15 @@ class SupportDecorator < Draper::Decorator
 
   def topic
     UserDecorator.decorate(object.topic)
+  end
+
+  def truncated_body
+    body.truncate(150) if body.present?
+  end
+
+  def state_image
+    status  = object.done? ? 'done' : 'new'
+    h.image_tag "i/status-#{status}.png"
   end
 
   private
