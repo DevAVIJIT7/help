@@ -92,7 +92,7 @@ describe User do
       expect(user.has_pending_supports?).to be true
     end
 
-    it 'returns false there is are no pending supports ' do
+    it 'returns false there is are no pending supports' do
       expect(subject.has_pending_supports?).to be false
     end
   end
