@@ -2,7 +2,7 @@ class UserDecorator < Draper::Decorator
 
   decorates :user
 
-  delegate :email, :id, :supports_count, :pending_supports_count
+  delegate :email, :id, :supports_count, :pending_supports_count, :archived?
 
   def topic_class(topic)
     'active' if object.helps_with?(topic.object)
@@ -20,11 +20,25 @@ class UserDecorator < Draper::Decorator
     h.content_tag :span, h.raw(h.link_to(gravatar + to_s, object)), class: 'user-info'
   end
 
+  def profile_link
+    h.link_to user, h.user_path(object)
+  end
+
   def to_s
     object.to_s.titleize
   end
 
   def points_from_beginning_of_week
     object.supports.from_beginning_of_week.count
+  end
+
+  class Unavailable < UserDecorator
+    def to_s
+      'User unavailable'
+    end
+
+    def profile_link
+      h.link_to self, '#'
+    end
   end
 end

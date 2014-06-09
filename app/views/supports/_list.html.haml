@@ -9,6 +9,6 @@
   = support.truncated_body
   = link_to "View problem (#{pluralize(support.comments_count, 'comment')})", support
 %td.request__column
-  = link_to support.receiver, user_path(support.receiver)
+  = support.receiver_link
 %td.request__column
-  = link_to support.user, user_path(support.user)
+  = support.user_link

@@ -104,6 +104,14 @@ irb(main):002:0> Topic.create(title: 'anoter help subject', description: 'anothe
 Title have to be present and have minimum 3 characters.
 Description have to be present also and have minimum 6 characters.
 
+## Archiving users
+
+In order to archive user, please use the following `rake` task:
+
+```shell
+bin/rake users:archive[foo@example.com]
+```
+
 ## Read more
 
 Read more about the app & story behind at [Open Source App To Support Your Culture](https://netguru.co/blog/posts/open-source-app-to-support-your-culture).

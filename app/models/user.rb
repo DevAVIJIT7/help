@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :received_supports, as: :receiver
   has_many :comments
 
+  default_scope { active }
+  scope :active, -> { where(archived_at: nil) }
   scope :sorted, -> { order('supports_count DESC, lower(first_name) ASC') }
 
   def name
@@ -26,6 +28,10 @@ class User < ActiveRecord::Base
 
   def helps_with?(topic)
     skills.where(topic_id: topic.id).any?
+  end
+
+  def archived?
+    archived_at.present?
   end
 
   def self.this_week_best_users
