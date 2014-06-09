@@ -2,7 +2,7 @@ require 'rake'
 
 namespace :users do
 
-  desc 'Recreate labels and features for all accounts'
+  desc 'Archives user with a given email'
   task :archive, [:email] => :environment do |task, args|
     email = args[:email]
     if email.present?
