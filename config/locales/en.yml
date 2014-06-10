@@ -1,4 +1,6 @@
 en:
+  topic:
+    no_supporters: There's no one available to help you at this point
   support:
     skip:
       notice: As you wish, you lazy person!
