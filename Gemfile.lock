@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/drapergem/draper.git
+  revision: 8e22c0c1099e1b7af70ad53d1bf1a4246365cf67
+  specs:
+    draper (1.3.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,11 +67,6 @@ GEM
     disposable (0.0.4)
       representable (~> 1.8.1)
       uber
-    draper (1.3.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0.3)
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.9.0)
@@ -243,7 +248,7 @@ DEPENDENCIES
   database_cleaner
   decent_decoration
   decent_exposure
-  draper
+  draper!
   figaro
   haml-rails
   high_voltage
