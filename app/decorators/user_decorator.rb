@@ -33,8 +33,12 @@ class UserDecorator < Draper::Decorator
   end
 
   class Unavailable < UserDecorator
+    def gravatar(size = 80)
+      h.gravatar_image_tag '', size
+    end
+
     def to_s
-      'User unavailable'
+      'Archived user'
     end
 
     def profile_link
