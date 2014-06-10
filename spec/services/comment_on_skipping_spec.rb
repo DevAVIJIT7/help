@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CommentOnSkipping do
   let(:user) { User.new first_name: 'John'}

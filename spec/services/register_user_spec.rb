@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe RegisterUser do
   let(:data){ Hash.new }

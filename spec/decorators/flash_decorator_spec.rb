@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe FlashDecorator do
   let(:subject) { described_class.decorate flash  }
 

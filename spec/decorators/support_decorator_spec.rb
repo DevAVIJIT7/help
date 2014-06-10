@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe SupportDecorator do
   let(:support) { Support.new }
   let(:subject) { described_class.decorate support }
