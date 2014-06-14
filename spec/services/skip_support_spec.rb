@@ -1,4 +1,4 @@
-require_relative '../../app/services/skip_support'
+require 'rails_helper'
 
 describe SkipSupport do
   let(:candidates) { 2.times.map { double(:user, present?: true) } }

@@ -1,4 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
+
 describe FinishSupport do
 
   let(:user) { User.new }

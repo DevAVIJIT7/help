@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative '../../app/services/skip_support'
 
 class SomeUsers
