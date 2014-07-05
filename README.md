@@ -14,7 +14,7 @@ The flow is quite simple:
 
 TL;DR: you select what you can help with or application selects somebody to help you
 
-![main page](https://netguruco-production.s3.amazonaws.com/uploads/1400162300-help_main_page.png)
+![main page](https://netguruco-production.s3.amazonaws.com/uploads/1401957129-1400162300-help_main_page.jpg)
 
 ## Deploying
 This is just a simple rails app, can be easly deployed to heroku under < 5 time mark :)
