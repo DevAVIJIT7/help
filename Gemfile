@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 gem 'sprockets', '2.11.0' # https://github.com/rails/sass-rails/issues/191
 gem 'sass', '~> 3.3.0'
 gem 'sass-rails', '~> 4.0.0'
