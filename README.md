@@ -1,9 +1,8 @@
 # Help me!
 
-[![Code Climate](https://codeclimate.com/github/netguru/help.png)](https://codeclimate.com/github/netguru/help)
-[![Dependencies](http://allthebadges.io/netguru/help/gemnasium.png)](http://allthebadges.io/netguru/help/gemnasium)
-
-![Circle CI](https://circleci.com/gh/netguru/help/tree/master.png?circle-token=0b87a42d881a82d69dca72d9c0f4cc680f795f62)
+[![Code Climate](http://img.shields.io/codeclimate/github/netguru/help.svg)](https://codeclimate.com/github/netguru/help)
+[![Dependencies](http://img.shields.io/gemnasium/netguru/help.svg)](https://gemnasium.com/netguru/help)
+[![Circle CI](https://circleci-badges.herokuapp.com/netguru/help/0b87a42d881a82d69dca72d9c0f4cc680f795f62)](https://circleci.com/gh/netguru/help)
 
 This application is a simple, easy to run support system for your team. It's ment to be used internally, to encourage your team members to help each other.
 
