@@ -1,37 +1,36 @@
 .container
   .row
-    %h2 All requests
-  .row
+    %h2
+      All requests
+      %span.filters-trigger.filters-hidden
+        Show filters
 
-    %table.request
-      = simple_form_for search_form, url: request.url, method: :get do |f|
-        %tr.request
-          %td.request__column
-            = f.input :state, collection: search_form.states, as: :radio_buttons, checked: search_form.state
-          %td.request__column
-          %td.request__column
-            = f.input :topic_id, collection: search_form.topics
-          %td.request__body
-            = f.input :body
-          %td.request__column
-            = f.input :receiver_id, collection: search_form.users
-          %td.request__column
-            = f.input :user_id, collection: search_form.users
-        %tr.request__header
-          %td
-          %td
-          %td
-          %td
-            = f.submit 'Search'
+
+    = simple_form_for search_form, url: request.url, method: :get, html: { class: 'form-horizontal' } do |f|
+      .row
+        .col-xs-8.col-sm-10
+          = f.input :body, placeholder: 'What are you looking for?', label: false
+        .col-xs-4.col-sm-2
+          = f.submit 'Search', class: 'btn btn-primary search-button'
+      .row.search-filters
+        .col-xs-7.col-sm-4.col-md-3
+          = f.input :state, collection: search_form.states, as: :radio_buttons, checked: search_form.state
+        .col-xs-5.col-sm-3.col-md-3
+          = f.input :topic_id, collection: search_form.topics
+        .col-xs-6.col-sm-3.col-md-3
+          = f.input :receiver_id, collection: search_form.users
+        .col-xs-6.col-sm-2.col-md-3
+          = f.input :user_id, collection: search_form.users
+
     %table.request
       %thead
         %tr.request__header.request__list
-          %th.request__column State:
-          %th.request__column Updated:
-          %th.request__column Topic:
-          %th.request__body Problem:
-          %th.request__column Asked by:
-          %th.request__column Assigned to:
+          %th.request__column State
+          %th.request__column Updated
+          %th.request__column Topic
+          %th.request__body Problem
+          %th.request__column Asked by
+          %th.request__column Assigned to
       %tbody
         - supports.each_with_index do |support, i|
           %tr.request__list
