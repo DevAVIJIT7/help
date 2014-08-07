@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe SupportsController do
+
   context '#skip' do
     let(:support) { double(:support, id: 4) }
     let(:skip_service) { double(:skip_service).as_null_object }
@@ -36,6 +37,30 @@ describe SupportsController do
         expect(flash[:notice]).to_not be_empty
       end
     end
+  end
+
+  context '#destroy' do
+
+    let(:support) { double :support, id: 1, done: false }
+
+    context " when support was found" do
+
+      before do
+        allow(controller).to receive_message_chain(:current_user, :received_supports, :not_done, :find).and_return(support)
+        expect(support).to receive(:destroy).and_return(true)
+      end
+
+      it "destroys support" do
+        delete :destroy, id: 1
+      end
+
+      it 'redirects to root path' do
+        delete :destroy, id: 1
+        expect(response).to redirect_to root_path
+        expect(flash[:notice]).to_not be_empty
+      end
+    end
+
   end
 end
 

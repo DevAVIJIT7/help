@@ -45,6 +45,14 @@ class SupportsController < ApplicationController
     redirect_to root_path, notice: t('support.finish.notice')
   end
 
+  def destroy
+    if support = current_user.received_supports.not_done.find(params[:id])
+      support.destroy
+      notice = t('support.destroy.notice')
+    end
+    redirect_to root_path, notice: notice || t('support.destroy.error')
+  end
+
   private
 
   def support_params
