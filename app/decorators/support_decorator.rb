@@ -65,6 +65,13 @@ class SupportDecorator < Draper::Decorator
     end
   end
 
+  def delete_button
+    return if done? || support.receiver != h.current_user
+    h.link_to 'Delete', h.support_path(object),
+      method: :delete,
+      data: { confirm: h.t('support.destroy.confirm') }
+  end
+
   def skip_button
     return if done? || support.user != h.current_user
 
