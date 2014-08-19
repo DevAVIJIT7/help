@@ -26,10 +26,3 @@ production:
     api_key: <%= ENV['POSTMARK_API_KEY'] %>
   domain: <%= ENV['APP_DOMAIN'] %>
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
-  hipchat:
-    active:           <%= ENV['HIPCHAT_ACTIVE'] %>
-    api_token:        <%= ENV['HIPCHAT_TOKEN'] %>
-    author_name:      HelpApp
-    notify_users:     false
-    message_color:    green
-    room_name:        <%= ENV['HIPCHAT_ROOM'] %>

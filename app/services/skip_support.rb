@@ -11,7 +11,6 @@ class SkipSupport < Struct.new(:support)
       self.previous_user = support.user
       support.user = candidate
       support.save!
-      support.notify_skip(self.previous_user) if AppConfig.hipchat.active
       deliver_email
       comment_on_support!
       self.success = true

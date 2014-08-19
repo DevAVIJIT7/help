@@ -30,7 +30,6 @@ class FinishSupport
   def finish_support
     support.done = true
     support.save!
-    support.notify_finish if AppConfig.hipchat.active
   end
 
   def update_counter

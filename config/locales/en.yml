@@ -12,14 +12,3 @@ en:
       notice: Support acknowledged! now get this thing done!
     finish:
       notice: Finished helping. Awesome!
-  hipchat:
-    supports:
-      skip:
-        link: "view..."
-        main_line: "%{receiver} has skipped request to %{user}"
-      finish:
-        link: "view..."
-        main_line: "%{receiver} helped %{user}"
-      create:
-        link: "view..."
-        main_line: "%{user} asked for help in category: %{category}"
