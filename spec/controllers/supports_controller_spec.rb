@@ -46,7 +46,11 @@ describe SupportsController do
     context 'when support was found' do
 
       before do
-        allow(controller).to receive_message_chain(:current_user, :received_supports, :not_done, :find).and_return(support)
+        allow(controller).to receive_message_chain(:current_user,
+                                                   :received_supports,
+                                                   :not_done,
+                                                   :find)
+                              .and_return(support)
         expect(support).to receive(:destroy).and_return(true)
       end
 
