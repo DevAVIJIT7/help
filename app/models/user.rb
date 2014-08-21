@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   has_many :skills
   has_many :topics, through: :skills
   has_many :supports
-  has_many :received_supports, as: :receiver
+  has_many :received_supports, class_name: 'Support',
+                               inverse_of: :receiver,
+                               foreign_key: :receiver_id
   has_many :comments
 
   default_scope { active }

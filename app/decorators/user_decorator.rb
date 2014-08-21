@@ -2,7 +2,8 @@ class UserDecorator < Draper::Decorator
 
   decorates :user
 
-  delegate :email, :id, :supports_count, :pending_supports_count, :archived?
+  delegate :email, :id, :supports_count, :pending_supports_count, :archived?,
+           :received_supports
 
   def topic_class(topic)
     'active' if object.helps_with?(topic.object)
