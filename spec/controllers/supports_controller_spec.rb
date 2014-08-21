@@ -64,7 +64,6 @@ describe SupportsController do
         expect(flash[:notice]).to_not be_empty
       end
     end
-
   end
 end
 
