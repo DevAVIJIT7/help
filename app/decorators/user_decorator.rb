@@ -5,6 +5,15 @@ class UserDecorator < Draper::Decorator
   delegate :email, :id, :supports_count, :pending_supports_count, :archived?,
            :received_supports
 
+  def self.decorate(*args)
+    decorator_class = if args.first.present? # object
+                        UserDecorator
+                      else
+                        UserDecorator::Unavailable
+                      end
+    decorator_class.new *args
+  end
+
   def topic_class(topic)
     'active' if object.helps_with?(topic.object)
   end

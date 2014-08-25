@@ -81,7 +81,7 @@ class SupportDecorator < Draper::Decorator
   end
 
   def user
-    decorate_user(object.user)
+    UserDecorator.decorate(object.user)
   end
 
   def receiver_link
@@ -93,7 +93,7 @@ class SupportDecorator < Draper::Decorator
   end
 
   def receiver
-    decorate_user(object.receiver)
+    UserDecorator.decorate(object.receiver)
   end
 
   def topic
@@ -110,15 +110,6 @@ class SupportDecorator < Draper::Decorator
   end
 
   private
-
-  def decorate_user(user)
-    decorator_class = if user.present?
-                        UserDecorator
-                      else
-                        UserDecorator::Unavailable
-                      end
-    decorator_class.decorate user
-  end
 
   def thanks_for_help_button
     finish_button "I've received help!",
