@@ -97,7 +97,7 @@ class SupportDecorator < Draper::Decorator
   end
 
   def topic
-    UserDecorator.decorate(object.topic)
+    TopicDecorator.decorate(object.topic)
   end
 
   def truncated_body
