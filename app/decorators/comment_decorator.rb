@@ -12,7 +12,10 @@ class CommentDecorator < Draper::Decorator
   end
 
   def user
-    UserDecorator.decorate(object.user)
+    UserDecorator.decorate object.user
   end
 
+  def user_gravatar(*args)
+    user.gravatar(*args)
+  end
 end
