@@ -28,10 +28,11 @@ gem 'uglifier'
 gem 'will_paginate'
 
 group :development do
-  gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'html2haml'
+  gem 'letter_opener'
+  gem 'pry'
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring'
