@@ -108,7 +108,7 @@ Description have to be present also and have minimum 6 characters.
 In order to archive user, please use the following `rake` task:
 
 ```shell
-bin/rake users:archive[foo@example.com]
+heroku run bin/rake users:archive[foo@example.com]
 ```
 
 ## Read more
