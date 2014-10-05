@@ -9,7 +9,11 @@
 # See http://railsapps.github.io/rails-environment-variables.html
 
 
-['Server setup', 'Rails apps', 'SQL databases', 'Mongo', 'Project reviews', 'Mentoring new people'].each do |topic|
-  Topic.create(title: topic) unless Topic.find_by(title: topic)
-end
-
+Topic.first_or_create([
+  { title: 'Server setup', description: 'Server setup topics go here' },
+  { title: 'Rails apps', description: 'Rails apps topics go here' },
+  { title: 'SQL databases', description: 'SQL databases topics go here' },
+  { title: 'Mongo', description: 'Mongo topics go here' },
+  { title: 'Project reviews', description: 'Project reviews topics go here' },
+  { title: 'Mentoring new people', description: 'Mentoring new people topics go here' }
+])
