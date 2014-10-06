@@ -18,9 +18,9 @@
         .col-xs-5.col-sm-3.col-md-3
           = f.input :topic_id, collection: search_form.topics
         .col-xs-6.col-sm-3.col-md-3
-          = f.input :receiver_id, collection: search_form.users
+          = f.input :receiver_id, collection: search_form.users, label: 'Asked by'
         .col-xs-6.col-sm-2.col-md-3
-          = f.input :user_id, collection: search_form.users
+          = f.input :user_id, collection: search_form.users, label: 'Assigned to'
 
     %table.request
       %thead
