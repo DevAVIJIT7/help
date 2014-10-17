@@ -26,6 +26,7 @@ gem 'simple_form'
 gem 'sprockets', '2.11.0' # https://github.com/rails/sass-rails/issues/191
 gem 'uglifier'
 gem 'will_paginate'
+gem 'slack-notifier'
 
 group :development do
   gem 'better_errors'
