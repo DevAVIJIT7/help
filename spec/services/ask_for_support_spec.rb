@@ -9,6 +9,7 @@ describe AskForSupport do
     before do
       allow(subject).to receive(:supporter).and_return(user)
       allow(subject).to receive(:deliver_email).and_return(true)
+      allow(subject).to receive(:send_notification).and_return(true)
     end
 
     it "should save new_support" do
@@ -19,6 +20,12 @@ describe AskForSupport do
     it "should send email out" do
       allow(subject.new_support).to receive(:save!)
       expect(subject).to receive(:deliver_email)
+      subject.commence!
+    end
+
+    it "should send notification" do
+      allow(subject.new_support).to receive(:save!)
+      expect(subject).to receive(:send_notification)
       subject.commence!
     end
   end
