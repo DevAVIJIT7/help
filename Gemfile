@@ -32,7 +32,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'html2haml'
   gem 'letter_opener'
-  gem 'pry'
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring'
@@ -40,6 +39,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry'
   gem 'rspec-rails'
   gem 'database_cleaner'
 end
