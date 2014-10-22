@@ -1,6 +1,5 @@
 class Notifier
   class SlackNotifier < Base
-
     private
 
     def notify
@@ -8,7 +7,7 @@ class Notifier
     end
 
     def client
-      @client ||= ::Slack::Notifier.new AppConfig.slack.team,
+      @client ||= Slack::Notifier.new AppConfig.slack.team,
         AppConfig.slack.token,
         channel: AppConfig.slack.default_channel,
         username: 'HelpApp'
