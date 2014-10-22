@@ -26,13 +26,13 @@ gem 'simple_form'
 gem 'sprockets', '2.11.0' # https://github.com/rails/sass-rails/issues/191
 gem 'uglifier'
 gem 'will_paginate'
+gem 'slack-notifier'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'html2haml'
   gem 'letter_opener'
-  gem 'pry'
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring'
@@ -40,6 +40,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry'
   gem 'rspec-rails'
   gem 'database_cleaner'
 end

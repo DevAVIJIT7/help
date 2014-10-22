@@ -13,6 +13,7 @@ class AskForSupport
     setup_support
     new_support.save!
     deliver_email
+    send_notification
   end
 
   def setup_support
@@ -35,5 +36,10 @@ class AskForSupport
   def deliver_email
     email = SupportMailer.help_me(new_support)
     email.deliver
+  end
+
+  def send_notification
+    notification = AskForSupportNotification.new(new_support)
+    Notifier.new(notification).commence!
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: AppConfig.domain
 
   resources :skills
   resources :topics do
