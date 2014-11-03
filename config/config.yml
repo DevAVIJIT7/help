@@ -7,8 +7,7 @@ defaults: &defaults
     secret: <%= ENV['GAPPS_SECRET'] %>
     domain: <%= ENV['GAPPS_DOMAIN'] %>
   slack:
-    team: <%= ENV['SLACK_TEAM'] %>
-    token: <%= ENV['SLACK_TOKEN'] %>
+    webhook_url: <%= ENV['SLACK_WEBHOOK_URL'] %>
     default_channel: <%= ENV['SLACK_DEFAULT_CHANNEL'] %>
   enabled_notifications: ['slack']
 
