@@ -7,8 +7,7 @@ class Notifier
     end
 
     def client
-      @client ||= Slack::Notifier.new AppConfig.slack.team,
-        AppConfig.slack.token,
+      @client ||= Slack::Notifier.new AppConfig.slack.webhook_url,
         channel: AppConfig.slack.default_channel,
         username: 'HelpApp'
     end
