@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.7'
-ruby '2.1.4'
+ruby '2.1.5'
 
 gem 'bootstrap-sass'
 gem 'bourbon'
