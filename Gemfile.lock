@@ -41,6 +41,8 @@ GEM
       sass (~> 3.3)
       thor
     builder (3.2.2)
+    codeclimate-test-reporter (0.4.1)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -58,6 +60,7 @@ GEM
     disposable (0.0.8)
       representable (~> 2.0)
       uber
+    docile (1.1.5)
     draper (1.4.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -208,6 +211,11 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slack-notifier (1.0.0)
     slop (3.6.0)
     spring (1.1.3)
@@ -241,6 +249,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   bourbon
+  codeclimate-test-reporter
   coffee-rails
   database_cleaner
   decent_decoration

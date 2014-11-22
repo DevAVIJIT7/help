@@ -1,6 +1,7 @@
 # Help me!
 
 [![Code Climate](http://img.shields.io/codeclimate/github/netguru/help.svg)](https://codeclimate.com/github/netguru/help)
+[![Code Climate](http://img.shields.io/codeclimate/coverage/github/netguru/help.svg)](https://codeclimate.com/github/netguru/help)
 [![Dependencies](http://img.shields.io/gemnasium/netguru/help.svg)](https://gemnasium.com/netguru/help)
 [![Circle CI](https://circleci-badges.herokuapp.com/netguru/help/0b87a42d881a82d69dca72d9c0f4cc680f795f62)](https://circleci.com/gh/netguru/help)
 
