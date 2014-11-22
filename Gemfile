@@ -33,7 +33,6 @@ group :development do
   gem 'html2haml'
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'rails_layout'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
