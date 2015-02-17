@@ -109,7 +109,7 @@ Description have to be present also and have minimum 6 characters.
 In order to archive user, please use the following `rake` task:
 
 ```shell
-heroku run bin/rake users:archive[foo@example.com] --app=nghelp
+heroku run bin/rake users:archive[foo@example.com] --app=appname
 ```
 
 If you don't have access ask someone who has. (senior / team leader)
