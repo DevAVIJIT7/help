@@ -41,6 +41,9 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
 end
 
