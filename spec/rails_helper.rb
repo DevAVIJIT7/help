@@ -15,6 +15,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include Features::GoogleAuth, type: :feature
+  config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
