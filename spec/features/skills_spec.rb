@@ -22,4 +22,16 @@ describe 'skills page', js: true do
 		expect(find(selector_css)[:class]).to_not include 'active'
 		expect(user.topics).to_not include(topic1) 
 	end
+
+  it 'highlights selected topic' do
+    visit skills_path
+    selector_css = "input.item[value='#{topic1.title} - you are not helping yet.']"
+    expect(page).to have_selector(selector_css)
+    input = find(selector_css)
+    expect(input[:class]).to_not include('active')
+    find(selector_css).click
+    selector_css = "input.item.active[value='#{topic1.title} - you can help with that!']"
+    expect(page).to have_selector(selector_css)
+    expect(user.topics).to include(topic1)
+  end
 end
