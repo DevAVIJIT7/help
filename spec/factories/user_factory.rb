@@ -14,4 +14,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :user_with_supports_and_skills, parent: :user_with_supports do
+    after(:create) do |user, evaluator|
+      user.skills_count.times do
+        create(:skill, user: user)
+      end
+    end
+  end
 end
