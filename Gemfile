@@ -46,6 +46,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem "factory_girl_rails"
+  gem 'forgery', '0.6.0'
 end
 
 group :production do
