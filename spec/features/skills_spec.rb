@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'skills page', js: true do
+feature 'skills page', js: true do
 
   let(:user) { create :user }
   let!(:topic1) { create :topic, title: 'workshops' }
@@ -10,7 +10,7 @@ describe 'skills page', js: true do
     authenticate_user(user)
   end
 
-  it "doesn't highlight deselected topic" do
+  scenario "doesn't highlight deselected topic" do
     topic1.skills << create(:skill, user: user, topic: topic1)
     visit skills_path
     selector_css = "input.item.active[value='#{topic1.title} - you can help with that!']"
@@ -23,7 +23,7 @@ describe 'skills page', js: true do
     expect(user.topics).to_not include(topic1)
   end
 
-  it 'highlights selected topic' do
+  scenario 'highlights selected topic' do
     visit skills_path
     selector_css = "input.item[value='#{topic1.title} - you are not helping yet.']"
     expect(page).to have_selector(selector_css)
