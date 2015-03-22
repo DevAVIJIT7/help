@@ -15,7 +15,8 @@ development:
   <<: *defaults
 
 test:
-  <<: *defaults
+ <<: *defaults
+ enabled_notifications: []
 
 production:
   <<: *defaults
